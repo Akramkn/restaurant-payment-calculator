@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Food and Ice Cream Payment</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            transform: scale(1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .dialog-box {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        select, input {
+            margin-bottom: 20px;
+        }
+
+        select, input:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+        }
+
+        button {
+            background-color: #ff6b6b;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+
+        button:hover {
+            background-color: #ff4f4f;
+        }
+
+        #selectedItems {
+            padding: 15px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        #billTextBox {
+            width: auto;
+            font-weight: bold;
+            font-size: 24px;
+            color: #333;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        #logo {
+            display: block;
+            width: 100px;
+            margin: 0 auto;
+        }
+    </style>
+    <script type="text/javascript">
+        var foodItems = {
+            "Burger": 5.99,
+            "Pizza": 8.99,
+            "Fries": 2.49,
+            "Soda": 1.49
+        };
+
+        var iceCreamItems = {
+            "Chocolate": 3.99,
+            "Vanilla": 3.49,
+            "Strawberry": 4.29
+        };
+
+        function calculateBill() {
+            var selectedFood = document.getElementById("foodCombo").value;
+            var selectedIceCream = document.getElementById("iceCreamCombo").value;
+            var foodPrice = foodItems[selectedFood] || 0;
+            var iceCreamPrice = iceCreamItems[selectedIceCream] || 0;
+            var totalPrice = foodPrice + iceCreamPrice;
+
+            document.getElementById("selectedItems").innerText = `Selected Food: ${selectedFood}\nSelected Ice Cream: ${selectedIceCream}`;
+            document.getElementById("billTextBox").value = `$${totalPrice.toFixed(2)}`;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <img src="./assets/res_logos.png" alt="Company Logo" id="logo">
+        <h1>Online Food and Ice Cream Payment</h1>
+
+        <div class="dialog-box">
+            <label for="foodCombo">Select Food:</label>
+            <select id="foodCombo">
+                <option value="Burger">Burger</option>
+                <option value="Pizza">Pizza</option>
+                <option value="Fries">Fries</option>
+                <option value="Soda">Soda</option>
+            </select>
+        </div>
+
+        <div class="dialog-box">
+            <label for="iceCreamCombo">Select Ice Cream:</label>
+            <select id="iceCreamCombo">
+                <option value="Chocolate">Chocolate</option>
+                <option value="Vanilla">Vanilla</option>
+                <option value="Strawberry">Strawberry</option>
+            </select>
+        </div>
+
+        <button onclick="calculateBill()">Calculate Bill</button>
+
+        <div class="dialog-box">
+            <div id="selectedItems"></div>
+        </div>
+
+        <div class="dialog-box">
+            <label for="billTextBox">Total Bill:</label>
+            <input type="text" id="billTextBox" readonly>
+        </div>
+    </div>
+</body>
+</html>
